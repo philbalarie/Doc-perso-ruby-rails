@@ -42,6 +42,8 @@ pass_control do
     puts "This is line 1 of my block"
 end
 
+##############################################################
+
 #Procs = Fonctionne like a saved block
 
 a = [1,2,3,4,5,6]
@@ -82,7 +84,7 @@ end
 
 multiple_pass {puts "inside the block"} #Va apparaitre 2 fois
 
-## Procs : Objet (contrairement aux blocs) qui se veut un bloc sauvegardé, puisqu'un bloc n'est utilisé qu'une fois. Il a l'avantage d'avoir toutes les  options d'un objet, contrairement à un block qui est temporaire.
+## Procs : Objet (contrairement aux blocs) qui se veut un bloc sauvegardé, puisqu'un bloc n'est utilisé qu'une fois. Il a l'avantage d'avoir toutes les  options d'un objet, contrairement à un block qui est temporaire. UN proc peut être mis en paramètre d'une méthode, même si cette dernière ne prend pas d'arguments parce qu'un proc est un objet.
 
 # Exemple 1
 
@@ -94,3 +96,71 @@ a_cubes = a.map {|num| num ** 3} #Retourne tous les nombres au cube grâce à un
 cube_array = Proc.new {|number| number **3}
 
 cube_array2 = a.map(&cube_array) # Active le proc en paramètre qui devient un bloc temporaire. Plus utile si réutilisé souvent. 
+
+## Block_given? : Applique le block à la méthode s'il est attaché à la méthode
+
+# Exemple 1
+
+def pass_control_on_condition
+    puts "Inside the method"
+        yield if block_given?
+    puts "Back inside the method"
+
+    pass_control_on_condition #Ne renverra pas d'erreurs que le bloc soit attaché ou non.
+end
+
+## Yielding with arguments
+
+# Exemple 1
+
+def speak_the_truth 
+    yield("Boris") if block_given? #Paramètre au yield
+end
+
+speak_the_truth { |name| puts "#{name} is brillant" } #Renvoit Boris est brillant.
+
+# Exemple 2 : Avec le paramètre de la méthode
+
+def speak_the_truth(name)
+    yield name if block_given?
+end
+
+speak_the_truth("Philippe") { |name| puts "#{name} is brillant" } #Même résultat
+
+# Exemple 3 : Proc en paramètre de méthode
+
+hi = new Proc { puts "Hi there" }
+
+5.times(&hi) #Affiche 5 fois Hi there
+
+# Exemple 4 : Passer une methode comme un proc
+
+string_of_number =  ["1", "2", "3"]
+
+string_of_number.map(&:to_i) # = string_of_number.map { |number|  number.to_i}. Symbole pour indiquer que ce n'est pas une variable.
+
+# Exemple 5 : Méthode avec un proc comme paramètre
+
+def talk_about(name, &myproc)
+    puts "Let me tell you about #{name}"
+    myproc.call(name) #Comme un yield du proc
+end
+
+good_things = { |name| puts "#{name} is a genius" }
+
+talk_about("Philippe", &good_things) 
+
+## Lambdas : Méthode anonyme. Presque identique à un prox. Deux différences principales: 1. Proc va assigner nil aux arguments qui n'ont pas de valeurs, contrairmement à Lambda qui va renvoyer une erreur. 2. On peut inclure un return dans le lambda, contrairement au proc ou seule la méthode peut avoir un return implicite, sinon le return se fait à partir du proc. 
+
+# Exemple 1 : lambda vs proc
+
+def diet 
+    status = Proc.new {return "You gave in!"}
+    status.call
+    "you complete the diet!"
+end
+
+result = diet #Va retourner "you gave in!" si status est un proc et "you complete the diet" si status est un lambda
+
+
+
