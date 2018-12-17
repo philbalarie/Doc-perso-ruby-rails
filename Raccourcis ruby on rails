@@ -1,0 +1,49 @@
+Raccourcis ruby on rails
+
+Créer une application avec une database et sans les test -> rails new DevCampUdemy -T --database=postgresql
+
+
+Générer un controller -> rails generate controller Welcome index
+Générer un modèle -> rails generate model Article title:string text:text
+                     rails generate model Comment commenter:string body:text article:references
+
+Créer une base de donnée rails db:create
+Créer une migration -> rails db:migrate
+Supprime les données ajoutées et utilise à la place le fichier seeds.rb ou updater les valeurs dans la table, par exemple pour friendly_id -> rails db:setup
+
+Créer un scaffold -> rails g scaffold Blog title:string body:text
+Skipper le bundle install -> rails new PORJECT -B
+
+Générer un controller Pages avec les views -> rails g controller Pages home about contact
+Générer un model -> rails g model Skill title:string percent_utilized:integer
+
+Aller dans la console pour la database -> rails c
+Créer une entrée dans la table Skills (exemple de table) -> Skill.create!(title: "rails", percent_utilized: 75)
+Skill.all -> Voir toutes les entrées du tableau Skill
+Skill.count -> Voir le nombre d'entrées de la table
+Portfolio.find(5) -> Permet de trouver l'entrée avec l'id 5 dans la table Portfolio
+Book.find_by_sq1l("commande SQL") -> Permet de rechercher grâce à SQL. Donne juste un résultat. Pour plus de résultats, utiliser la méthode where.
+luke.books.any? -> renvoit un booléen.
+vader.books.sum(:sales) -> Oobtenir des informations pour une colone d'une table.
+Book.order('sales DESC') -> Présenter les entrées par nombre de ventes.
+reload!" -> Actualiser les modifications dans les models.
+Book.pluck(:title) -> Génère un array avec tous les titres
+
+
+
+Générer une ressource (comme un scafforld, mais juste avec la création des dossiers et fichers vides) -> rails g resource Portfolio title:string subtitle: string body:text main_image:text
+
+rails g migration add_slug_to_blogs slug:string:uniq -> Créer une migration (avec ici pour exemple un slug)
+rails g migration add_topic_reference_to_blogs topic:references -> Ajouter une référence topic aux articles de blog
+rails g migration add_badge_to_skills badge:text -> ajouter un badge
+rails g model Technology name:string portfolio:references -> Créer une table technology avec une reference vers le portfolio.
+
+Une fois pry ouvert
+
+ssn = BCrypt::Password.create("300 113 073") -> encrypter une donnée
+
+rails g active_admin:resource Blog = Générer une ressource dans Active Admin
+
+bundle gem pfdn_view_tool -> Créer une gem
+gem build pfdn_view_tool -> Générer une gem
+Ne pas oublier de .gitignore les fichiers .gem, parce que le build créée un .gem.
