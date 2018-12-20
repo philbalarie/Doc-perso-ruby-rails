@@ -150,7 +150,7 @@ good_things = { |name| puts "#{name} is a genius" }
 
 talk_about("Philippe", &good_things) 
 
-## Lambdas : Méthode anonyme. Presque identique à un prox. Deux différences principales: 1. Proc va assigner nil aux arguments qui n'ont pas de valeurs, contrairmement à Lambda qui va renvoyer une erreur. 2. On peut inclure un return dans le lambda, contrairement au proc ou seule la méthode peut avoir un return implicite, sinon le return se fait à partir du proc. 
+## Lambdas : Méthode anonyme. Presque identique à un proc. Deux différences principales: 1. Proc va assigner nil aux arguments qui n'ont pas de valeurs, contrairmement à Lambda qui va renvoyer une erreur. 2. On peut inclure un return dans le lambda, contrairement au proc ou seule la méthode peut avoir un return implicite, sinon le return se fait à partir du proc. 
 
 # Exemple 1 : lambda vs proc
 
@@ -162,5 +162,14 @@ end
 
 result = diet #Va retourner "you gave in!" si status est un proc et "you complete the diet" si status est un lambda
 
+# Exemple 2 : Montrer l'efficacité du lambda
+to_euros = lambda { |dollars| dollars * 0.95 }
 
+def convert(dollars, currency_lambda)
+    currency_lambda.call(dollars) if dollars is_a?(Numeric) || block_given?
+end
+
+convert(95, to_euros)
+
+## Time 
 
