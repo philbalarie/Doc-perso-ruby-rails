@@ -44,6 +44,14 @@ end
 
 ##############################################################
 
+## Ternaire ? 
+
+# Exemple 1
+
+string.length ­­> 10 ? true : false # Si la phrasea plus de 10 caractére, renvoie true, sinon false
+
+
+
 #Procs = Fonctionne like a saved block
 
 a = [1,2,3,4,5,6]
@@ -171,5 +179,14 @@ end
 
 convert(95, to_euros)
 
-## Time 
+## Expressions régulières
 
+# Exemple 1
+
+phrase = "Ruby is amazing!"
+
+phrase.downcase.start_with?("the") #retourne un booléen
+
+phrase.downcase.end_with?("amazing!") #retourne un booléen
+
+phrase.downcase.include? "is" #Retourne un booléen. Peut juste être dans une partie d'un mot

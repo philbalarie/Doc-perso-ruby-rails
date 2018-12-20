@@ -2,8 +2,6 @@ Raccourcis ruby on rails
 
 Créer une application avec une database et sans les test -> rails new DevCampUdemy -T --database=postgresql
 
-Skipper le bundle install -> rails new PORJECT -B
-
 
 Générer un controller -> rails generate controller Welcome index
 Générer un modèle -> rails generate model Article title:string text:text
@@ -13,8 +11,8 @@ Créer une base de donnée rails db:create
 Créer une migration -> rails db:migrate
 Supprime les données ajoutées et utilise à la place le fichier seeds.rb ou updater les valeurs dans la table, par exemple pour friendly_id -> rails db:setup
 
-Créer un scaffold -> rails g scaffold Blog title:string body:text ou rails generate scaffold User name:string email:string
-
+Créer un scaffold -> rails g scaffold Blog title:string body:text
+Skipper le bundle install -> rails new PORJECT -B
 
 Générer un controller Pages avec les views -> rails g controller Pages home about contact
 Générer un model -> rails g model Skill title:string percent_utilized:integer
