@@ -4,6 +4,9 @@ Créer une application avec une database et sans les test -> rails new DevCampUd
 
 Skipper le bundle install -> rails new PORJECT -B
 
+rails test -­> Procéder -> tous les tests
+rails test:integration -> Tester seulement ce qui est dans le dossier intégration
+rails g integration_test site_layout -> Créer un dossier test nommé intégration avec un fichier site_layout pour tester le layout
 
 Générer un controller -> rails generate controller Welcome index
 Générer un modèle -> rails generate model Article title:string text:text
