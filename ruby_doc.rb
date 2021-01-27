@@ -117,6 +117,10 @@ def pass_control_on_condition
     pass_control_on_condition #Ne renverra pas d'erreurs que le bloc soit attaché ou non.
 end
 
+def test_for_steph
+    puts "Bonjour ! Tu es jolie"
+end
+
 ## Yielding with arguments
 
 # Exemple 1
